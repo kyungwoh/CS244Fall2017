@@ -77,7 +77,7 @@ HRnew(1:L) = HR(1);
 SPO2new(1:L) = SPO2(1);
 for i = 2:length(locsHR)
     HRnew(locsHR(i-1):locsHR(i)) = HR(i-1);
-    SPO2new(locsHR(i-1):locsHR(i)) = SPO2new(i-1);
+    SPO2new(locsHR(i-1):locsHR(i)) = SPO2(i);
 end
 
 RRnew(1:L) = RR(1);

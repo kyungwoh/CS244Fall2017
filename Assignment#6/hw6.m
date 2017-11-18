@@ -8,19 +8,19 @@ Xdata = data(:,5);
 Ydata = data(:,6);
 Zdata = data(:,7);
 
-Fs=50; % Sampling frequency
+Fs=25; % Sampling frequency
 Fn=Fs/2; % Nyquist frequency
 T=1/Fs; % Sampling period
 L=length(SEQ); % Length of signal
 
-[b,a] = butter(2,[60/60 180/60]/Fn); % Bandpass Filter (Butterworth)
+[b,a] = butter(5,[75/60 100/60]/Fn); % Bandpass Filter (Butterworth)
 [SOS_HR,G_HR] = tf2sos(b,a); % Convert to Second-Order-Section For Stability
 S_HR = filtfilt(SOS_HR,G_HR,IR); % Filter IR To Recover S_HR
 [pksHR,locsHR] = findpeaks(S_HR); % Find peaks
 peakIntervalHR = diff(locsHR);
 HR = 60.*Fs./(peakIntervalHR); % Find Heart Rate
 
-[b,a] = butter(2,[15/60 40/60]/Fn); % Bandpass Filter (Butterworth)
+[b,a] = butter(5,[15/60 25/60]/Fn); % Bandpass Filter (Butterworth)
 [SOS_RR,G_RR] = tf2sos(b,a); % Convert to Second-Order-Section For Stability
 S_RR = filtfilt(SOS_RR,G_RR,IR); % Filter IR To Recover S_RR
 [pksRR,locsRR] = findpeaks(S_RR); % Find peaks
@@ -32,7 +32,7 @@ S_HRi = S_HR.* (-1); %find min peaks from IR
 xq = 0:(L-1);
 IR_min_int = interp1(locsHRi,IR(locsHRi),xq,'spline'); %interpolation
 
-[b,a] = butter(2,[60/60 180/60]/Fn); %filter RED
+[b,a] = butter(5,[75/60 100/60]/Fn); %filter RED
 [SOS,G] = tf2sos(b,a); % Convert to Second-Order-Section For Stability
 S_RED = filtfilt(SOS,G,RED); % Filter RED To Recover S_RED
 [pksRED,locsRED] = findpeaks(S_RED); %max peaks of RED

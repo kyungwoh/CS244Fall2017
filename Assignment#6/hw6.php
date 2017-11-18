@@ -14,7 +14,7 @@ foreach($obj['data'] as $row){
     $X = $row[4];
     $Y = $row[5];
     $Z = $row[6];
-    $stmt = $conn->prepare("INSERT INTO HW5(NUM,SEQ,IR,RED,X,Y,Z) VALUES (?,?,?,?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO HW6(NUM,SEQ,IR,RED,X,Y,Z) VALUES (?,?,?,?,?,?,?)");
     $stmt->bind_param("sssssss",$NUM,$SEQ,$IR,$RED,$X,$Y,$Z);
     $stmt->execute();
     $stmt->close();

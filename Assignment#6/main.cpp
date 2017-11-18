@@ -17,9 +17,9 @@ float X[50];
 float Y[50];
 float Z[50];
 const char *ssid = "UCInet Mobile Access"; // WiFi settings
-const char* host = "169.234.15.26"; // Server host settings
+const char* host = "169.234.38.220"; // Server host settings
 const int httpPort = 80;
-const int activityNum = 1;
+const int activityNum = 2;
   
 void setup()
 {
@@ -82,7 +82,7 @@ void loop()
     Z[count%50] = zValue;
     count++;
 
-    Serial.print("activityNum=");
+    /*Serial.print("activityNum=");
     Serial.print(activityNum);
     Serial.print(", SEQ=");
     Serial.print(count);
@@ -95,7 +95,8 @@ void loop()
     Serial.print(", Y=");
     Serial.print(yValue);
     Serial.print(", Z=");
-    Serial.println(zValue);
+    Serial.println(zValue);*/
+    //Serial.println(count);
   }else if(isEnd==0){
     isEnd=1;
   }else{
@@ -140,14 +141,14 @@ void loop()
     request += "\r\n\r\n";
     request += postData;
 
-    Serial.print("POST length="); //<=2600 is ok
-    Serial.println(postData.length());
+    //Serial.print("POST length="); //<=2600 is ok
+    //Serial.println(postData.length());
     client.print(request);
-    
+    /*
     while(client.available()>0){
       String r = client.readStringUntil('\r');
       Serial.print(r);
-    }
+    }*/
     if(client.connected()) client.stop();
     
   }

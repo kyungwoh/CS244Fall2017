@@ -52,7 +52,7 @@ DC_IR = IR_min;
 DC_RED = RED_min;
 
 R = AC_RED .* DC_IR ./ AC_IR ./ DC_RED;
-R(isnan(R)) = 0;
+%R(isnan(R)) = 0;
 
 %figure(3);
 %plot(IR,'k');
@@ -65,7 +65,7 @@ R(isnan(R)) = 0;
 
 SPO2 = -45.060.*R.*R + 30.354.*R + 94.845; %calculate SPO2
 SPO2(SPO2<0) = 0;
-SPO2(isnan(SPO2)) = 0;
+%SPO2(isnan(SPO2)) = 0;
 
 HRnew(1:L) = HR(1);
 SPO2new(1:L) = SPO2(1);

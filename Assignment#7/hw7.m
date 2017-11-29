@@ -107,14 +107,14 @@ ErrorRate = 100 - sum(YTestResult)/length(YTestResult)*100;
 
 output = [IR RED Xdata Ydata Zdata HRnew' RRnew' SPO2new' ones(L,1).*ErrorRate];
 
-T = array2table(output(1:7500,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
-writetable(T,'team11_assignment7_sleeping.csv','Delimiter',',','QuoteStrings',true);
+T0 = array2table(output(1:7500,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
+writetable(T0,'team11_assignment7_sleeping.csv','Delimiter',',','QuoteStrings',true);
 
-T = array2table(output(7501:15000,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
-writetable(T,'team11_assignment7_sitting.csv','Delimiter',',','QuoteStrings',true);
+T1 = array2table(output(7501:15000,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
+writetable(T1,'team11_assignment7_sitting.csv','Delimiter',',','QuoteStrings',true);
 
-T = array2table(output(15001:22500,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
-writetable(T,'team11_assignment7_standing.csv','Delimiter',',','QuoteStrings',true);
+T2 = array2table(output(15001:22500,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
+writetable(T2,'team11_assignment7_standing.csv','Delimiter',',','QuoteStrings',true);
 
-T = array2table(output(22501:30000,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
-writetable(T,'team11_assignment7_walking.csv','Delimiter',',','QuoteStrings',true);
+T3 = array2table(output(22501:30000,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
+writetable(T3,'team11_assignment7_walking.csv','Delimiter',',','QuoteStrings',true);

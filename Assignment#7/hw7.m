@@ -52,7 +52,7 @@ DC_IR = IR_min;
 DC_RED = RED_min;
 
 R = AC_RED .* DC_IR ./ AC_IR ./ DC_RED;
-R(R==NaN)=0;
+R(isnan(R)) = 0;
 
 %figure(3);
 %plot(IR,'k');
@@ -65,6 +65,7 @@ R(R==NaN)=0;
 
 SPO2 = -45.060.*R.*R + 30.354.*R + 94.845; %calculate SPO2
 SPO2(SPO2<0) = 0;
+SPO2(isnan(SPO2)) = 0;
 
 HRnew(1:L) = HR(1);
 SPO2new(1:L) = SPO2(1);
@@ -104,5 +105,16 @@ YTestResult=YTest==YTestPredict;
 
 ErrorRate = 100 - sum(YTestResult)/length(YTestResult)*100;
 
-T = array2table([IR RED Xdata Ydata Zdata HRnew' RRnew' SPO2new' ones(L,1).*ErrorRate],'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
-writetable(T,'team11_assignment7.csv','Delimiter',',','QuoteStrings',true);
+output = [IR RED Xdata Ydata Zdata HRnew' RRnew' SPO2new' ones(L,1).*ErrorRate];
+
+T = array2table(output(1:7500,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
+writetable(T,'team11_assignment7_sleeping.csv','Delimiter',',','QuoteStrings',true);
+
+T = array2table(output(7501:15000,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
+writetable(T,'team11_assignment7_sitting.csv','Delimiter',',','QuoteStrings',true);
+
+T = array2table(output(15001:22500,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
+writetable(T,'team11_assignment7_standing.csv','Delimiter',',','QuoteStrings',true);
+
+T = array2table(output(22501:30000,:),'VariableNames',{'IR','RED','X','Y','Z','HR','RR','SP02','ERROR_RATE'});
+writetable(T,'team11_assignment7_walking.csv','Delimiter',',','QuoteStrings',true);

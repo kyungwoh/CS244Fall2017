@@ -52,15 +52,16 @@ DC_IR = IR_min;
 DC_RED = RED_min;
 
 R = AC_RED .* DC_IR ./ AC_IR ./ DC_RED;
+R(R==NaN)=0;
 
-figure(3);
-plot(IR,'k');
-hold on;
-plot(RED,'r');
-plot(locsHR,IR_max,'r*');
-plot(locsHR,IR_min,'g*');
-plot(locsHR,RED_max,'r*');
-plot(locsHR,RED_min,'g*');
+%figure(3);
+%plot(IR,'k');
+%hold on;
+%plot(RED,'r');
+%plot(locsHR,IR_max,'r*');
+%plot(locsHR,IR_min,'g*');
+%plot(locsHR,RED_max,'r*');
+%plot(locsHR,RED_min,'g*');
 
 SPO2 = -45.060.*R.*R + 30.354.*R + 94.845; %calculate SPO2
 SPO2(SPO2<0) = 0;

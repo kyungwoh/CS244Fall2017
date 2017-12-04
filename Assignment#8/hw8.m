@@ -53,8 +53,8 @@ DC_RED = RED_min;
 
 R = AC_RED .* DC_IR ./ AC_IR ./ DC_RED;
 R(isnan(R)) = 0;
-R(R>2) = 0;
-R(R<184) = 0;
+R(R<2) = 0;
+R(R>184) = 0;
 
 %figure(3);
 %plot(IR,'k');
